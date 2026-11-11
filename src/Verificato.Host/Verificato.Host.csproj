@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Verificato.Core/Verificato.Core.csproj" />
+    <ProjectReference Include="../Verificato.Infrastructure/Verificato.Infrastructure.csproj" />
+    <ProjectReference Include="../Verificato.Browser/Verificato.Browser.csproj" />
+    <ProjectReference Include="../Verificato.Analysis.CSharp/Verificato.Analysis.CSharp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="../Verificato.UI/dist/**/*" Link="wwwroot/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

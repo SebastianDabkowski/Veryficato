@@ -1,0 +1,36 @@
+name: Build and verify
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: src/Verificato.UI/package-lock.json
+      - run: npm --prefix src/Verificato.UI ci
+      - run: npm --prefix src/Verificato.UI run test
+      - run: npm --prefix src/Verificato.UI run build
+      - run: dotnet build Verificato.slnx --configuration Debug
+      - run: pwsh scripts/install-browser.ps1
+      - run: dotnet test Verificato.slnx --no-build --logger trx
+      - run: npm --prefix src/Verificato.UI run test:e2e
+      - run: npm --prefix src/Verificato.UI audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-results
+          path: |
+            tests/**/TestResults/*.trx
+            src/Verificato.UI/test-results/
+            artifacts/*.png

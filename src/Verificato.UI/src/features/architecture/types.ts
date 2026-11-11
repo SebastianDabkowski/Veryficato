@@ -1,0 +1,9 @@
+export interface ArchitectureMember { name: string; kind: string; signature: string; summary?: string; line: number }
+export interface ArchitectureType { name: string; fullName: string; namespace: string; kind: string; accessibility: string; summary?: string; line: number; endLine: number; baseTypes: string[]; members: ArchitectureMember[] }
+export interface ArchitectureFile { id: string; path: string; hash: string; lines: number; types: ArchitectureType[] }
+export interface ArchitecturePackage { name: string; version?: string; condition?: string }
+export interface ArchitectureComponent { id: string; name: string; projectFile: string; projectFileId: string; projectFileHash: string; technology: string; kind: string; isTest: boolean; description: string; descriptionBasis: string; namespaces: string[]; files: ArchitectureFile[]; packages: ArchitecturePackage[] }
+export interface ArchitectureRelationship { id: string; sourceId: string; targetId: string; description: string; technology: string; evidenceFile: string; line: number; condition?: string }
+export interface ArchitectureContainer { id: string; name: string; technology: string; description: string; componentIds: string[]; isInferred: boolean }
+export interface ArchitectureDocument { id: string; projectId: string; runId: string; name: string; sourceRoot: string; generatedAt: string; sourceFingerprint: string; schemaVersion: string; generator: string; containers: ArchitectureContainer[]; components: ArchitectureComponent[]; relationships: ArchitectureRelationship[]; unresolvedReferences: { sourceId: string; include: string; reason: string; line: number }[]; warnings: string[] }
+export interface SourceCodePreview { fileId: string; path: string; hash: string; totalLines: number; startLine: number; lines: { number: number; text: string }[] }

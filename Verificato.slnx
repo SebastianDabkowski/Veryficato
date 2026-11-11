@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Verificato.Analysis.CSharp/Verificato.Analysis.CSharp.csproj" />
+    <Project Path="src/Verificato.Browser/Verificato.Browser.csproj" />
+    <Project Path="src/Verificato.Core/Verificato.Core.csproj" />
+    <Project Path="src/Verificato.Host/Verificato.Host.csproj" />
+    <Project Path="src/Verificato.Infrastructure/Verificato.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Verificato.Tests/Verificato.Tests.csproj" />
+  </Folder>
+</Solution>
